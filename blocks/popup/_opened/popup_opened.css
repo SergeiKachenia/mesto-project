@@ -1,5 +1,5 @@
 .popup_opened {
-  display: flex !important;
+  display: flex;
 }
 
-/*добавил important, потому что иначе выполняется свойство display:none элемента __overlay, свойство модификатора _opened никак на это не влияет, т.е. просто не выполняется, почему-то*/
+

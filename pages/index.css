@@ -20,10 +20,10 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/profile/__edit-button-image/profile__edit-button-image.css);
 @import url(../blocks/profile/__add-button-image/profile__add-button-image.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__fieldset/popup__fieldset.css);
@@ -31,4 +31,3 @@
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__field/_content/_name/popup__field_content_name.css);
 @import url(../blocks/popup/__field/_content/_description/popup__field_content_description.css);
-
