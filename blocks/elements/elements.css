@@ -1,0 +1,19 @@
+.elements {
+  max-width: 880px;
+  width: 92.5%;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px 17px;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-rows: auto;
+  padding: 50px 0 67px;
+}
+
+@media screen and (max-width:632px) {
+  .elements {
+    padding: 36px 0 48px;
+    width: 88.125%;
+  }
+}
+
+/*сделал галерею с фото гридами*/

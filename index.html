@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Проект Место" />
+  <meta name="keywords" content="HTML5, CSS" />
+  <meta name="author" content="Сергей Каченя" />
+  <link rel="stylesheet" href="./pages/index.css" />
+  <title>Место</title>
+</head>
+
+<body>
+<div class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="лого в шапке"/>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img src="./images/avatar.png" alt="аватар" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто <button type="submit" class="profile__edit-button"><img src="./images/edit-image.svg" alt=" значок изменения профиля" class="profile__edit-button-image"></button></h1>
+        <h2 class="profile__description">Исследователь океана</h2>
+      </div>
+      <button type="submit" class="profile__add-button"><img src="./images/plus.svg" alt="изображение плюса" class="profile__add-button-image"></button>
+    </section>
+    <section class="elements">
+      <article class="element">
+        <img src="./images/dombai.png" alt="фото Домбай" class="element__image">
+        <div class="element__flex-content">
+        <h2 class="element__title">Домбай</h2>
+        <button type="image" class="element__like-button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/elbrus.png" alt="фото Эльбрус" class="element__image">
+        <div class="element__flex-content">
+        <h2 class="element__title">Эльбрус</h2>
+        <button type="image" class="element__like-button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/karachaevsk.png" alt="фото Карачево-Черкессия" class="element__image">
+        <div class="element__flex-content">
+        <h2 class="element__title">Карачево-Черкессия</h2>
+        <button type="image" class="element__like-button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/oymyakon.png" alt="фото Оймякон" class="element__image">
+        <div class="element__flex-content">
+        <h2 class="element__title">Оймякон</h2>
+        <button type="image" class="element__like-button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/peterhof.png" alt="фото Петергоф" class="element__image">
+        <div class="element__flex-content">
+        <h2 class="element__title">Петергоф</h2>
+        <button type="image" class="element__like-button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/putorana.png" alt="фото Путорана" class="element__image">
+        <div class="element__flex-content">
+        <h2 class="element__title">Путорана</h2>
+        <button type="image" class="element__like-button"></button>
+        </div>
+      </article>
+    </section>
+    <div class="popup__overlay popup_opened">
+    <div class="popup">
+        <button class="popup__close-button" type="submit"></button>
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form class="popup__form" name="edit-profile">
+          <fieldset class="popup__fieldset">
+            <input type="text" name="name" value="Жак-Ив Кусто" placeholder="Имя" class="popup__field popup__field_content_name" required>
+            <input type="text" name="description" value="Исследователь океана" placeholder="Описание" class="popup__field popup__field_content_description" required>
+          </fieldset>
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+  </footer>
+</div>
+</body>
+</html>

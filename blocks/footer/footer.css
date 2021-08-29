@@ -1,0 +1,16 @@
+.footer {
+  max-width: 880px;
+  width: 92.5%;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+@media screen and (max-width:660px) {
+  .footer {
+    width: 88.125%;
+    padding-bottom: 36px;
+  }
+}
+
+/*ширина в процентах высчитана по фигме, чтобы блок находился по центру экрана и был резиновым*/
+

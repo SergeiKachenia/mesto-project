@@ -1,0 +1,19 @@
+.profile {
+  max-width: 880px;
+  width: 92.5%;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: minmax(120px, min-content) minmax(336px, max-content) 1fr;
+  grid-template-rows: auto;
+}
+
+@media screen and (max-width:660px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    width: 88.125%;
+    align-items: center;
+  }
+}
+
+/*везде поставил ширину в процентах, высчитал сам, вместо calc. после 660 показалось проще сделать флексом*/

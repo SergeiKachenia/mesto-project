@@ -1,0 +1,24 @@
+.element__like-button {
+  background-image: url(/images/heart.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  border: none;
+  width: 22px;
+  height: 19px;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  transition: opacity 1s ease, background-image 1s ease;
+  cursor: pointer;
+}
+
+.element__like-button:hover {
+  opacity: .5;
+}
+
+.element__like-button:active {
+  background-image: url(/images/heart-black.png);
+}
+
+/*указал явную ширину и высоту, иначе сердечко не хочет быть необходимых размеров. Для active использовал закрашенное сердечко из фигмы. Реализовал 2 анимации*/

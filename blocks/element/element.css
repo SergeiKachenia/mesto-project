@@ -1,0 +1,15 @@
+.element {
+  min-width: 282px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width:660px) {
+  .element {
+    max-width: 380px;
+  }
+}
+
+/*установил макс ширину 380, иначе картинки выглядят чрезмерно большими  и нечеткими на смежных разрешениях */
