@@ -1,0 +1,7 @@
+.element__like-button_active {
+  transition: background-image .5s ease;
+}
+
+.element__like-button_active:active {
+  background-image: url(../../../../images/heart-black.png);
+}

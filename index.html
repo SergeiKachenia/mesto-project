@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,58 +20,58 @@
     <section class="profile">
       <img src="./images/avatar.png" alt="аватар" class="profile__avatar">
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто <button type="submit" class="profile__edit-button"><img src="./images/edit-image.svg" alt=" значок изменения профиля" class="profile__edit-button-image"></button></h1>
+        <h1 class="profile__name">Жак-Ив Кусто <button type="button" class="profile__edit-button"><img src="./images/edit-image.svg" alt=" значок изменения профиля" class="profile__edit-button-image"></button></h1>
         <h2 class="profile__description">Исследователь океана</h2>
       </div>
-      <button type="submit" class="profile__add-button"><img src="./images/plus.svg" alt="изображение плюса" class="profile__add-button-image"></button>
+      <button type="button" class="profile__add-button"><img src="./images/plus.svg" alt="изображение плюса" class="profile__add-button-image"></button>
     </section>
     <section class="elements">
       <article class="element">
         <img src="./images/dombai.png" alt="фото Домбай" class="element__image">
         <div class="element__flex-content">
         <h2 class="element__title">Домбай</h2>
-        <button type="image" class="element__like-button"></button>
+        <button type="button" class="element__like-button element__like-button_active"></button>
         </div>
       </article>
       <article class="element">
         <img src="./images/elbrus.png" alt="фото Эльбрус" class="element__image">
         <div class="element__flex-content">
         <h2 class="element__title">Эльбрус</h2>
-        <button type="image" class="element__like-button"></button>
+        <button type="button" class="element__like-button element__like-button_active"></button>
         </div>
       </article>
       <article class="element">
         <img src="./images/karachaevsk.png" alt="фото Карачево-Черкессия" class="element__image">
         <div class="element__flex-content">
         <h2 class="element__title">Карачево-Черкессия</h2>
-        <button type="image" class="element__like-button"></button>
+        <button type="button" class="element__like-button element__like-button_active"></button>
         </div>
       </article>
       <article class="element">
         <img src="./images/oymyakon.png" alt="фото Оймякон" class="element__image">
         <div class="element__flex-content">
         <h2 class="element__title">Оймякон</h2>
-        <button type="image" class="element__like-button"></button>
+        <button type="button" class="element__like-button element__like-button_active"></button>
         </div>
       </article>
       <article class="element">
         <img src="./images/peterhof.png" alt="фото Петергоф" class="element__image">
         <div class="element__flex-content">
         <h2 class="element__title">Петергоф</h2>
-        <button type="image" class="element__like-button"></button>
+        <button type="button" class="element__like-button element__like-button_active"></button>
         </div>
       </article>
       <article class="element">
         <img src="./images/putorana.png" alt="фото Путорана" class="element__image">
         <div class="element__flex-content">
         <h2 class="element__title">Путорана</h2>
-        <button type="image" class="element__like-button"></button>
+        <button type="button" class="element__like-button element__like-button_active"></button>
         </div>
       </article>
     </section>
-    <div class="popup__overlay popup_opened">
-    <div class="popup">
-        <button class="popup__close-button" type="submit"></button>
+    <div class="popup popup_opened">
+    <div class="popup__container">
+        <button class="popup__close-button" type="reset"></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
         <form class="popup__form" name="edit-profile">
           <fieldset class="popup__fieldset">
