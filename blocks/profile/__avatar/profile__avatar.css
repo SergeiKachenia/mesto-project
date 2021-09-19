@@ -4,7 +4,7 @@
   max-width: 150px;
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:710px) {
   .profile__avatar {
     margin: 0 12px 0 0;
   }
@@ -13,6 +13,8 @@
 @media screen and (max-width:660px) {
   .profile__avatar {
     margin: 0 0 26px;
+    grid-area: avatar;
+    justify-self: center;
   }
 }
 

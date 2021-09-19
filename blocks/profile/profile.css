@@ -3,16 +3,23 @@
   width: 92.5%;
   margin: 40px auto 0;
   display: grid;
-  grid-template-columns: minmax(120px, min-content) minmax(336px, max-content) 1fr;
+  grid-template-columns: minmax(120px, min-content) minmax(336px, max-content) minmax(24px, max-content) 1fr;
   grid-template-rows: auto;
+}
+
+@media screen and (max-width:710px) {
+  .profile {
+  grid-template-columns: minmax(120px, min-content) minmax(296px, max-content) minmax(24px, max-content) 1fr;
+  }
 }
 
 @media screen and (max-width:660px) {
   .profile {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-areas: "avatar avatar" "info edit-button" "add-button add-button";
+    grid-template-columns: minmax(282px, max-content) minmax(18px, max-content);
     width: 88.125%;
-    align-items: center;
+    justify-content: center;
   }
 }
 

@@ -6,15 +6,17 @@
   line-height: 114%;
   max-width: 336px;
   margin: 0 0 16px 0;
-  display: flex;
-  flex-direction: row;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:710px) {
   .profile__name {
     font-size: 40px;
     line-height: 112%;
     text-align: center;
+    justify-content: center;
   }
 }
 

@@ -14,6 +14,8 @@
 @media screen and (max-width:660px) {
   .profile__add-button {
     min-width: 282px;
+    grid-area: add-button;
+    justify-self: center;
   }
 }
 
