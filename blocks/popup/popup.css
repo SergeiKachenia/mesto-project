@@ -9,6 +9,7 @@
     align-items: center;
     flex-direction: column;
     opacity: 0;
+    background-color: rgba(0, 0, 0, .5);
     visibility: hidden;
-    transition: opacity .5s, visibility .5s ease;
+    transition: all .3s linear;
 }

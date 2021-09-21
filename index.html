@@ -14,10 +14,12 @@
 
 <body>
     <div class="page">
+        <!-- хэдер -->
         <header class="header">
             <img class="header__logo" src="./images/logo.svg" alt="лого в шапке" />
         </header>
         <main class="content">
+            <!-- секция профиля -->
             <section class="profile">
                 <img src="./images/avatar.png" alt="аватар" class="profile__avatar">
                 <div class="profile__info">
@@ -27,19 +29,21 @@
                 <button type="button" class="profile__edit-button"><img src="./images/edit-image.svg" alt="значок изменения профиля" class="profile__edit-button-image"></button>
                 <button type="button" class="profile__add-button"><img src="./images/plus.svg" alt="изображение плюса" class="profile__add-button-image"></button>
             </section>
+            <!-- секция с карточками + template -->
+
             <section class="elements">
-                <template class="cards-template">
+                <templateЮ class="cards-template">
                     <article class="element">
-                        <img src="" alt="" class="element__image">
+                        <img src="#" alt="#" class="element__image">
                         <button type="button" class="element__delete-button"></button>
                         <div class="element__flex-content">
                             <h2 class="element__title"></h2>
                             <button type="button" class="element__like-button"></button>
                         </div>
                     </article>
-                </template>
-
+                    </template>
             </section>
+            <!-- попап редактирования профиля -->
             <div class="popup">
                 <div class="popup__container">
                     <button class="popup__close-button" type="reset"></button>
@@ -53,6 +57,7 @@
                     </form>
                 </div>
             </div>
+            <!-- попап добавления карточек -->
             <div class="popup">
                 <div class="popup__container">
                     <button class="popup__close-button" type="reset"></button>
@@ -66,7 +71,16 @@
                     </form>
                 </div>
             </div>
+            <!-- попап увеличенных фото -->
+            <div class="popup popup_type_photo">
+                <figure class="popup__container-photo">
+                    <button class="popup__close-button" type="reset"></button>
+                    <img class="popup__image" src="#" alt="фото">
+                    <figcaption class="popup__caption"></figcaption>
+                </figure>
+            </div>
         </main>
+        <!-- футер -->
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
