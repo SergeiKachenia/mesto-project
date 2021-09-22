@@ -59,7 +59,7 @@ function createNewCard(cardItem) {
     const cardsImage = cardsElement.querySelector('.element__image');
     const cardsTitle = cardsElement.querySelector('.element__title');
     cardsImage.src = cardItem.link;
-    cardsImage.alt = cardItem.link;
+    cardsImage.alt = cardItem.name;
     cardsTitle.textContent = cardItem.name;
     return cardsElement;
 }
@@ -102,7 +102,7 @@ editForm.addEventListener('submit', editSubmitForm);
 
 addForm.addEventListener('submit', addSubmitForm)
 
-// слушатель на кнопки закрытия попапов
+// слушатель на кнопки закрытия попапоd
 
 closeButtons.forEach((element) => {
     const popup = element.closest('.popup')
