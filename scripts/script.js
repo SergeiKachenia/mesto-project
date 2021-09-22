@@ -9,14 +9,18 @@ const popupPhoto = document.querySelector('.popup_type_photo');
 const editForm = content.querySelector('.popup__form_type_edit');
 const addForm = content.querySelector('.popup__form_type_add');
 
+
+//функция открытия попапа
+
 function openPopup(popupItem) {
     popupItem.classList.add('popup_opened');
 };
+// функция лайка карточек
 
 function likeCard(event) {
     event.target.classList.toggle('element__like-button_active');
 }
-// функция удаления карточки
+// функция удаления карточек
 
 function deleteCard(event) {
     event.target.closest('.element').remove();
@@ -26,6 +30,7 @@ function deleteCard(event) {
 function closePopup(popupItem) {
     popupItem.classList.remove('popup_opened');
 }
+// функция создания попапа с увеличенными фото
 
 function openPlacePopup(photoSrc, photoCaption) {
     popupPhoto.querySelector('.popup__image').src = photoSrc;
@@ -33,18 +38,20 @@ function openPlacePopup(photoSrc, photoCaption) {
     popupPhoto.querySelector('.popup__caption').textContent = photoCaption;
     openPopup(popupPhoto);
 }
-
+// функция открытия попапа по клику на картинку
 function openBigCard(event) {
     const target = event.target
     if (target.closest('.element__image')) {
         openPlacePopup(target.src, target.alt);
     }
 };
-
+// добавление начальных карточек
 initialCards.forEach(function(item) {
     const initialCard = createNewCard(item)
     addCardToCollection(initialCard);
 });
+
+// функция создания новой карточки
 
 function createNewCard(cardItem) {
     const cardsTemplate = document.querySelector('.cards-template').content;
@@ -56,6 +63,7 @@ function createNewCard(cardItem) {
     cardsTitle.textContent = cardItem.name;
     return cardsElement;
 }
+// функция добавления невой карточки
 
 function addCardToCollection(cardItem) {
     cardItem.querySelector('.element__like-button').addEventListener('click', likeCard);
@@ -64,6 +72,7 @@ function addCardToCollection(cardItem) {
     elements.prepend(cardItem);
 }
 
+// функция сабмита попапа редактирования профиля
 function editSubmitForm(event) {
     event.preventDefault();
     const nameInput = content.querySelector('.popup__field_content_name');
@@ -74,7 +83,7 @@ function editSubmitForm(event) {
     profileDesc.textContent = descInput.value;
     closePopup(popupProfile);
 }
-
+// функция сабмита попапа добавления новой карточки
 function addSubmitForm(event) {
     event.preventDefault();
     const cardItem = {
@@ -86,17 +95,21 @@ function addSubmitForm(event) {
     closePopup(popupAddCard);
     addForm.reset();
 }
-
+// слушатель на форму редактирования профиля
 editForm.addEventListener('submit', editSubmitForm);
 
-// функция кнопки сабмит второго попапа (добавления места)
+// слушатель на форму добавления карточки
 
 addForm.addEventListener('submit', addSubmitForm)
+
+// слушатель на кнопки закрытия попапов
 
 closeButtons.forEach((element) => {
     const popup = element.closest('.popup')
     element.addEventListener('click', () => closePopup(popup))
 })
+
+// слушатели, открывающие попапы редактирования и добавления карточки
 
 content.querySelector('.profile__edit-button').addEventListener('click', () => openPopup(popupProfile));
 
