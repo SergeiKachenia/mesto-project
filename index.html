@@ -29,43 +29,33 @@
                 <button type="button" class="profile__edit-button"><img src="./images/edit-image.svg" alt="значок изменения профиля" class="profile__edit-button-image"></button>
                 <button type="button" class="profile__add-button"><img src="./images/plus.svg" alt="изображение плюса" class="profile__add-button-image"></button>
             </section>
-            <!-- секция с карточками + template -->
+            <!-- секция с карточками -->
 
             <section class="elements">
-                <template class="cards-template">
-                    <article class="element">
-                        <img src="#" alt="#" class="element__image">
-                        <button type="button" class="element__delete-button"></button>
-                        <div class="element__flex-content">
-                            <h2 class="element__title"></h2>
-                            <button type="button" class="element__like-button"></button>
-                        </div>
-                    </article>
-                    </template>
             </section>
             <!-- попап редактирования профиля -->
-            <div class="popup">
+            <div class="popup popup_type_profile">
                 <div class="popup__container">
-                    <button class="popup__close-button" type="reset"></button>
+                    <button class="popup__close-button" type="button"></button>
                     <h2 class="popup__heading">Редактировать профиль</h2>
-                    <form class="popup__form" name="edit-profile">
+                    <form class="popup__form popup__form_type_edit" name="edit-profile">
                         <fieldset class="popup__fieldset">
-                            <input type="text" name="name" value="Жак-Ив Кусто" placeholder="Имя" class="popup__field popup__field_content_name" required>
-                            <input type="text" name="description" value="Исследователь океана" placeholder="Описание" class="popup__field popup__field_content_description" required>
+                            <input type="text" name="name" value="" placeholder="Имя" class="popup__field popup__field_content_name" required>
+                            <input type="text" name="description" value="" placeholder="Описание" class="popup__field popup__field_content_description" required>
                         </fieldset>
                         <button type="submit" class="popup__submit-button">Сохранить</button>
                     </form>
                 </div>
             </div>
             <!-- попап добавления карточек -->
-            <div class="popup">
+            <div class="popup popup_type_place">
                 <div class="popup__container">
-                    <button class="popup__close-button" type="reset"></button>
+                    <button class="popup__close-button" type="button"></button>
                     <h2 class="popup__heading">Новое Место</h2>
-                    <form class="popup__form" name="add-place">
+                    <form class="popup__form popup__form_type_add" name="add-place">
                         <fieldset class="popup__fieldset">
-                            <input type="text" name="placename" value="Название" placeholder="Название" class="popup__field popup__field_content_name" required>
-                            <input type="text" name="link" value="Ссылка на картинку" placeholder="Ссылка на картинку" class="popup__field popup__field_content_description" required>
+                            <input type="text" name="placename" value="" placeholder="Название" class="popup__field popup__field_content_placename" required>
+                            <input type="text" name="link" value="" placeholder="Ссылка на картинку" class="popup__field popup__field_content_link" type="url" required>
                         </fieldset>
                         <button type="submit" class="popup__submit-button">Создать</button>
                     </form>
@@ -74,7 +64,7 @@
             <!-- попап увеличенных фото -->
             <div class="popup popup_type_photo">
                 <figure class="popup__container-photo">
-                    <button class="popup__close-button" type="reset"></button>
+                    <button class="popup__close-button" type="button"></button>
                     <img class="popup__image" src="#" alt="фото">
                     <figcaption class="popup__caption"></figcaption>
                 </figure>
@@ -85,6 +75,17 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
     </div>
+    <template class="cards-template">
+                    <article class="element">
+                        <img src="#" alt="#" class="element__image">
+                        <button type="button" class="element__delete-button"></button>
+                        <div class="element__flex-content">
+                            <h2 class="element__title"></h2>
+                            <button type="button" class="element__like-button"></button>
+                        </div>
+                    </article>
+                    </template>
+    <script src="./scripts/initial-cards.js"></script>
     <script src="./scripts/script.js"></script>
 </body>
 
