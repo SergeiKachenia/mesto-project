@@ -51,7 +51,7 @@ function openPlacePopup(photoSrc, photoCaption) {
 // добавление начальных карточек
 initialCards.forEach(function(item) {
     const initialCard = createNewCard(item)
-    addCardToCollection(initialCard);
+    addCardToCollection(elements, initialCard);
 });
 
 // функция создания новой карточки со слушателями лайка, удаления и открытия увеличенных фото
@@ -72,8 +72,8 @@ function createNewCard(cardItem) {
 }
 // функция добавления новой карточки
 
-function addCardToCollection(element) {
-    elements.prepend(element);
+function addCardToCollection(cardContainer, cardItem) {
+    cardContainer.prepend(cardItem);
 }
 
 // функция сабмита попапа редактирования профиля
@@ -91,7 +91,7 @@ function addSubmitForm(event) {
         link: placeLink.value
     }
     const newCard = createNewCard(cardItem);
-    addCardToCollection(newCard);
+    addCardToCollection(elements, newCard);
     closePopup(popupAddCard);
     addForm.reset();
 }
