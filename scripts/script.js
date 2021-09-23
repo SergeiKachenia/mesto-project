@@ -2,7 +2,6 @@
 
 const content = document.querySelector('.content');
 const closeButtons = content.querySelectorAll('.popup__close-button');
-const elements = content.querySelector('.elements');
 const popupProfile = content.querySelector('.popup_type_profile');
 const popupAddCard = content.querySelector('.popup_type_place');
 const popupPhoto = document.querySelector('.popup_type_photo');
@@ -51,7 +50,8 @@ function openPlacePopup(photoSrc, photoCaption) {
 // добавление начальных карточек
 initialCards.forEach(function(item) {
     const initialCard = createNewCard(item)
-    addCardToCollection(initialCard);
+    const elements = document.querySelector('.elements');
+    addCardToCollection(elements, initialCard);
 });
 
 // функция создания новой карточки со слушателями лайка, удаления и открытия увеличенных фото
@@ -72,8 +72,8 @@ function createNewCard(cardItem) {
 }
 // функция добавления новой карточки
 
-function addCardToCollection(cardItem) {
-    elements.prepend(cardItem);
+function addCardToCollection(cardContainer, cardItem) {
+    cardContainer.prepend(cardItem);
 }
 
 // функция сабмита попапа редактирования профиля
