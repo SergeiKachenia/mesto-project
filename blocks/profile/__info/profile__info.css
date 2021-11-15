@@ -1,18 +1,19 @@
 .profile__info {
-  max-width: 336px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+    max-width: 336px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width:660px) {
-  .profile__info {
-    margin: 0 0 36px;
-    grid-area: info;
-  }
+    .profile__info {
+        margin: 0 0 6px;
+        grid-area: info;
+    }
 }
+
 
 /*ширина в 336 пикселей это ширина текста + отступ до кнопки редактирования + ширина самой кнопки*/
