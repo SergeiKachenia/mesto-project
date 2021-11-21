@@ -8,7 +8,6 @@
     <meta name="description" content="Проект Место" />
     <meta name="keywords" content="HTML5, CSS" />
     <meta name="author" content="Сергей Каченя" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
 </head>
 
@@ -16,20 +15,20 @@
     <div class="page">
         <!-- хэдер -->
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="лого в шапке" />
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="лого в шапке" />
         </header>
         <main class="content">
             <!-- секция профиля -->
             <section class="profile">
                 <div class="profile__avatar-container">
-                    <img src="./images/avatar.png" alt="аватар" class="profile__avatar profile__avatar_hovered" />
+                    <img src="<%=require('./images/avatar.png')%>" alt="аватар" class="profile__avatar profile__avatar_hovered" />
                 </div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто </h1>
                     <h2 class="profile__description">Исследователь океана</h2>
                 </div>
-                <button type="button" class="profile__edit-button"><img src="./images/edit-image.svg" alt="значок изменения профиля" class="profile__edit-button-image"></button>
-                <button type="button" class="profile__add-button"><img src="./images/plus.svg" alt="изображение плюса" class="profile__add-button-image"></button>
+                <button type="button" class="profile__edit-button"><img src="<%=require('./images/edit-image.svg')%>" alt="значок изменения профиля" class="profile__edit-button-image"></button>
+                <button type="button" class="profile__add-button"><img src="<%=require('./images/plus.svg')%>" alt="изображение плюса" class="profile__add-button-image"></button>
             </section>
             <!-- секция с карточками -->
 
@@ -42,10 +41,14 @@
                     <h2 class="popup__heading">Редактировать профиль</h2>
                     <form class="popup__form popup__form_type_edit" name="edit-profile" novalidate>
                         <fieldset class="popup__fieldset">
-                            <input id="name-input" type="text" name="name" value="" placeholder="Имя" class="popup__field popup__field_content_name" minlength="2" maxlength="40" required>
-                            <span class="name-input-error popup__input-error"></span>
-                            <input id="desc-input" type="text" name="description" value="" placeholder="О себе" class="popup__field popup__field_content_description" minlength="2" maxlength="200" required>
-                            <span class="desc-input-error popup__input-error"></span>
+                            <div class="popup__input-container">
+                                <input id="name-input" type="text" name="name" value="" placeholder="Имя" class="popup__field popup__field_content_name popup__edit-profile-input" minlength="2" maxlength="40" required>
+                                <span class="name-input-error popup__input-error"></span>
+                            </div>
+                            <div class="popup__input-container">
+                                <input id="desc-input" type="text" name="description" value="" placeholder="О себе" class="popup__field popup__field_content_description popup__edit-profile-input" minlength="2" maxlength="200" required>
+                                <span class="desc-input-error popup__input-error"></span>
+                            </div>
                         </fieldset>
                         <button type="submit" class="popup__submit-button">Сохранить</button>
                     </form>
@@ -58,10 +61,14 @@
                     <h2 class="popup__heading">Новое Место</h2>
                     <form class="popup__form popup__form_type_add" name="add-place" novalidate>
                         <fieldset class="popup__fieldset">
-                            <input id="placename-input" type="text" name="placename" value="" placeholder="Название" class="popup__field popup__field_content_placename" minlength="2" maxlength="30" required>
-                            <span class="placename-input-error popup__input-error"></span>
-                            <input id="url-input" type="url" name="link" value="" placeholder="Ссылка на картинку" class="popup__field popup__field_content_link" required>
-                            <span class="url-input-error popup__input-error"></span>
+                            <div class="popup__input-container">
+                                <input id="placename-input" type="text" name="placename" value="" placeholder="Название" class="popup__field popup__field_content_placename popup__new-place-input" minlength="2" maxlength="30" required>
+                                <span class="placename-input-error popup__input-error"></span>
+                            </div>
+                            <div class="popup__input-container">
+                                <input id="url-input" type="url" name="link" value="" placeholder="Ссылка на картинку" class="popup__field popup__field_content_link popup__new-place-input" required>
+                                <span class="url-input-error popup__input-error"></span>
+                            </div>
                         </fieldset>
                         <button type="submit" class="popup__submit-button">Создать</button>
                     </form>
@@ -74,7 +81,10 @@
                     <h2 class="popup__heading">Обновить аватар</h2>
                     <form class="popup__form popup__form_type_edit" name="avatar" novalidate>
                         <fieldset class="popup__fieldset">
-                            <input type="url" name="link" value="" placeholder="Ссылка на новый аватар" class="popup__field popup__field_content_link" required>
+                            <div class="popup__input-container">
+                                <input id="url-input" type="url" name="link" value="" placeholder="Ссылка на новый аватар" class="popup__field popup__field_content_link" required>
+                                <span class="url-input-error popup__input-error"></span>
+                            </div>
                         </fieldset>
                         <button type="submit" class="popup__submit-button">Сохранить</button>
                     </form>
@@ -104,8 +114,6 @@
                         </div>
                     </article>
                     </template>
-    <script src="./scripts/initial-cards.js"></script>
-    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
