@@ -105,9 +105,6 @@ popups.forEach(popupItem => {
     popupItem.addEventListener('click', closePopupByOverlay);
 });
 
-// слушатель на страницу для закрытия попапов через Esc
-
-document.addEventListener('keydown', closePopupByEscape);
 
 // попап для изменения аватара
 
