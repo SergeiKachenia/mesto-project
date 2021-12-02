@@ -14,4 +14,4 @@
 
 ### GH Pages
 Данный проект также доступен на GitHub Pages по [этой](https://sergeikachenia.github.io/mesto-project/) ссылке.
-Update: Проект пока не доступен на GH Pages, но в скором времени снова там появится :)
+* Update: Проект пока не доступен на GH Pages, но в скором времени снова там появится :)
