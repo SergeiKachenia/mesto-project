@@ -27,6 +27,7 @@ const placeLink = content.querySelector('.popup__field_content_link');
 const avatarLink = content.querySelector('.popup__field_content_avatar');
 const editInputs = content.querySelectorAll('.popup__edit-profile-input');
 const cardsInputs = content.querySelectorAll('.popup__new-place-input');
+const avatarInputs = content.querySelectorAll('.popup__new-avatar-input')
 const profileEditBtn = content.querySelector('.popup__profile-save-button');
 const placeAddBtn = content.querySelector('.popup__new-place-create-button');
 const avatarEditBtn = content.querySelector('.popup__new-avatar-save-button');
@@ -81,14 +82,14 @@ function editSubmitForm(event) {
     sendUserData(userData)
         .then(res => {
             addUserData(res.name, res.about, res.avatar)
+            closePopup();
         })
-        .catch(err => {
-            console.log(err)
+        .catch(error => {
+            console.log(error);
         })
         .finally(() => {
             profileEditBtn.textContent = 'Сохранить';
         })
-    closePopup();
 }
 
 // функция сабмита попапа добавления новой карточки
@@ -104,6 +105,7 @@ function addSubmitForm(event) {
         .then(res => {
             addCardToCollection(createNewCard(res, currentUser));
             addForm.reset();
+            closePopup();
         })
         .catch(error => {
             console.log(error);
@@ -111,17 +113,17 @@ function addSubmitForm(event) {
         .finally(() => {
             placeAddBtn.textContent = 'Добавить';
         })
-    closePopup();
 }
 // функция смены аватара пользователя
 
 function changeAvatarSubmitForm(event) {
     event.preventDefault();
-    avatarEditBtn.textContent = 'Сохранение...';
+    avatarEditBtn.textContent = 'Сохраняем...';
     changeUserAvatar(avatarLink.value)
         .then(res => {
             profileAvatar.src = res.avatar;
             avatarForm.reset();
+            closePopup();
         })
         .catch(err => {
             console.log(err);
@@ -129,7 +131,6 @@ function changeAvatarSubmitForm(event) {
         .finally(() => {
             avatarEditBtn.textContent = 'Сохранить';
         })
-    closePopup();
 }
 
 // функция открытия попапа подтверждения удаления (+ устанавливает id)
@@ -146,14 +147,18 @@ export function setDeleteCardPopup(event) {
 function confirmDeleteCardPopup() {
     const popupId = popupDeleteCard.getAttribute('data-id');
     const cardItem = document.querySelector(`[data-id='${popupId}']`);
+    cardDeleteBtn.textContent = 'Удаляем...';
     deleteCards(popupId)
         .then(() => {
             cardItem.remove();
+            closePopup();
         })
         .catch(error => {
             console.log(error);
         })
-    closePopup();
+        .finally(() => {
+            cardDeleteBtn.textContent = 'Да';
+        })
 }
 
 // слушатель на кнопку удаления карточки подтверждающего попапа
@@ -201,7 +206,10 @@ popups.forEach(popupItem => {
 
 // попап для изменения аватара
 
-content.querySelector('.profile__avatar-button').addEventListener('click', () => openPopup(popupAvatar));
+content.querySelector('.profile__avatar-button').addEventListener('click', () => {
+    disableValidation(avatarInputs, avatarForm, validationConfig);
+    openPopup(popupAvatar);
+});
 
 // включение валидации
 

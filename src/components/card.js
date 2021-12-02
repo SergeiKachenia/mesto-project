@@ -51,7 +51,9 @@ function toggleLikes(event, cardItem, likesCounter) {
                     likesCounter.textContent = '';
                 }
             })
-
+            .catch(error => {
+                console.log(error);
+            })
     } else {
         addCardsLike(cardItemId)
             .then(res => {
