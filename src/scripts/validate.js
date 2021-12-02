@@ -1,25 +1,25 @@
 // Функция, которая убирает ошибку
 
 const hideInputError = (inputElement, formElement, config) => {
-    const errorElement = getErrorElement(inputElement, formElement)
-    inputElement.classList.remove(config.inputErrorClass)
-    errorElement.classList.remove(config.errorClass)
+    const errorElement = getErrorElement(inputElement, formElement);
+    inputElement.classList.remove(config.inputErrorClass);
+    errorElement.classList.remove(config.errorClass);
     errorElement.textContent = '';
 }
 
 // Функция, показывающая ошибку
 
 const showInputError = (inputElement, formElement, config) => {
-    const errorElement = getErrorElement(inputElement, formElement)
-    inputElement.classList.add(config.inputErrorClass)
-    errorElement.classList.add(config.errorClass)
+    const errorElement = getErrorElement(inputElement, formElement);
+    inputElement.classList.add(config.inputErrorClass);
+    errorElement.classList.add(config.errorClass);
     errorElement.textContent = inputElement.validationMessage;
 }
 
 // Функция, проверяющая формы на валидность
 
 const isFormValid = (inputList) => {
-    return inputList.every(inputElement => inputElement.validity.valid)
+    return inputList.every(inputElement => inputElement.validity.valid);
 }
 
 // Функция, которая находит все ошибки по айди
@@ -32,9 +32,9 @@ const getErrorElement = (inputElement, formElement) => {
 
 const checkInputValidity = (inputElement, formElement, config) => {
     if (inputElement.validity.valid) {
-        hideInputError(inputElement, formElement, config)
+        hideInputError(inputElement, formElement, config);
     } else {
-        showInputError(inputElement, formElement, config)
+        showInputError(inputElement, formElement, config);
     }
 };
 
@@ -42,9 +42,9 @@ const checkInputValidity = (inputElement, formElement, config) => {
 
 const toggleButtonState = (submitButton, inputList) => {
     if (isFormValid(inputList)) {
-        submitButton.disabled = false
+        submitButton.disabled = false;
     } else {
-        submitButton.disabled = true
+        submitButton.disabled = true;
     }
 };
 
@@ -72,7 +72,7 @@ export const enableValidation = config => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
     formList.forEach(formElement => {
         // Ставим слушатели на каждую форму
-        setEventListeners(formElement, config)
+        setEventListeners(formElement, config);
     })
 }
 

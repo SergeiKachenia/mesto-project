@@ -20,9 +20,9 @@
         <main class="content">
             <!-- секция профиля -->
             <section class="profile">
-                <div class="profile__avatar-container">
+                <button class="profile__avatar-button">
                     <img src="<%=require('./images/avatar.png')%>" alt="аватар" class="profile__avatar profile__avatar_hovered" />
-                </div>
+                </button>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто </h1>
                     <h2 class="profile__description">Исследователь океана</h2>
@@ -50,7 +50,7 @@
                                 <span class="desc-input-error popup__input-error"></span>
                             </div>
                         </fieldset>
-                        <button type="submit" class="popup__submit-button">Сохранить</button>
+                        <button type="submit" class="popup__submit-button popup__profile-save-button">Сохранить</button>
                     </form>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                                 <span class="url-input-error popup__input-error"></span>
                             </div>
                         </fieldset>
-                        <button type="submit" class="popup__submit-button">Создать</button>
+                        <button type="submit" class="popup__submit-button popup__new-place-create-button">Создать</button>
                     </form>
                 </div>
             </div>
@@ -79,14 +79,23 @@
                 <div class="popup__container">
                     <button class="popup__close-button" type="button"></button>
                     <h2 class="popup__heading">Обновить аватар</h2>
-                    <form class="popup__form popup__form_type_edit" name="avatar" novalidate>
+                    <form class="popup__form popup__form_type_avatar" name="avatar" novalidate>
                         <fieldset class="popup__fieldset">
                             <div class="popup__input-container">
-                                <input id="url-input" type="url" name="link" value="" placeholder="Ссылка на новый аватар" class="popup__field popup__field_content_link" required>
+                                <input id="url-input" type="url" name="link" value="" placeholder="Ссылка на новый аватар" class="popup__field popup__field_content_avatar" required>
                                 <span class="url-input-error popup__input-error"></span>
                             </div>
                         </fieldset>
-                        <button type="submit" class="popup__submit-button">Сохранить</button>
+                        <button type="submit" class="popup__submit-button popup__new-avatar-save-button">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+            <!-- попап удаления карточки-->
+            <div class="popup popup_type_delete-card">
+                <div class="popup__container">
+                    <button class="popup__close-button" type="button"></button>
+                    <h2 class="popup__heading">Вы уверены?</h2>
+                    <button type="submit" class="popup__submit-button popup__delete-card-button">Да</button>
                     </form>
                 </div>
             </div>
@@ -110,7 +119,10 @@
                         <button type="button" class="element__delete-button"></button>
                         <div class="element__flex-content">
                             <h2 class="element__title"></h2>
+                            <div class="element_likes-flex">
                             <button type="button" class="element__like-button"></button>
+                            <p class="element__likes-counter"></p>
+                        </div>
                         </div>
                     </article>
                     </template>
