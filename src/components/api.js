@@ -1,103 +1,78 @@
-const config = {
-    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-4',
-    headers: {
-        authorization: '0097a37e-2eb2-4a07-8e8c-4ee3c30b05f9',
-        'Content-Type': 'application/json'
+export default class Api {
+    constructor(options) {
+        this._baseUrl = options.baseUrl;
+        this._headers = options.headers;
     }
-}
 
-//проверка ответа от сервера
-
-const checkResponse = (res) => {
-    if (res.ok) {
-        return res.json();
+    _connectionToServer(url, method, body) {
+        return fetch(`${this._baseUrl}${url}`, {
+                method: method,
+                headers: this._headers,
+                body: body
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Ошибка здесь: ${res.status}`);
+            })
     }
-    return Promise.reject(`Ошибка здесь: ${res.status}`);
-};
 
-// получение данных о пользователе
+    //const config = {
+    //   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-4',
+    //   headers: {
+    //       authorization: '0097a37e-2eb2-4a07-8e8c-4ee3c30b05f9',
+    //       'Content-Type': 'application/json'
+    //   }
+    //}
 
-export const getUserData = () => {
-    return fetch(`${config.baseUrl}/users/me`, {
-            headers: config.headers
-        })
-        .then(checkResponse);
-}
+    // получение данных о пользователе
 
-// получение данных о карточках
+    getUserData() {
+        return this._connectionToServer('/users/me', 'GET', null)
+    }
 
-export const getCardsData = () => {
-    return fetch(`${config.baseUrl}/cards`, {
-            headers: config.headers
-        })
-        .then(checkResponse);
-}
+    // получение данных о карточках
 
-// отправка данных о пользователе
+    getCardsData() {
+        return this._connectionToServer('/cards', 'GET', null);
 
-export const sendUserData = (userData) => {
-    return fetch(`${config.baseUrl}/users/me`, {
-            method: 'PATCH',
-            headers: config.headers,
-            body: JSON.stringify({
-                name: userData.name,
-                about: userData.about
-            })
-        })
-        .then(checkResponse);
-}
+    }
 
-// отправка данных о карточках
+    // отправка данных о пользователе
 
-export const sendCardsData = (cardItem) => {
-    return fetch(`${config.baseUrl}/cards`, {
-            method: 'POST',
-            headers: config.headers,
-            body: JSON.stringify({
-                name: cardItem.name,
-                link: cardItem.link
-            })
-        })
-        .then(checkResponse);
-}
+    sendUserData(userData) {
+        return this._connectionToServer('/users/me', 'PATCH', JSON.stringify({ name: userData.name, caption: userData.caption }))
+    }
 
-// изменение аватара пользователя
+    // отправка данных о карточках
 
-export const changeUserAvatar = (link) => {
-    return fetch(`${config.baseUrl}/users/me/avatar`, {
-            method: 'PATCH',
-            headers: config.headers,
-            body: JSON.stringify({ avatar: link })
-        })
-        .then(checkResponse);
-}
+    sendCardsData(cardItem) {
+        return this._connectionToServer('/cards', 'POST', JSON.stringify({ name: cardItem.name, link: cardItem.link }))
+    }
 
-// добавление лайков на карточки
+    // изменение аватара пользователя
 
-export const addCardsLike = (id) => {
-    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
-            method: 'PUT',
-            headers: config.headers,
-        })
-        .then(checkResponse);
-}
+    changeUserAvatar(link) {
+        return this._connectionToServer('/users/me/avatar', 'PATCH', JSON.stringify({ avatar: link }))
+    }
 
-// удаление лайков
+    // добавление лайков на карточки
 
-export const deleteCardsLike = (id) => {
-    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
-            method: 'DELETE',
-            headers: config.headers,
-        })
-        .then(checkResponse);
-}
+    addCardsLike(id) {
+        return this._connectionToServer(`/cards/likes/${id}`, 'PUT', null)
+    }
 
-// данные об удалении керточки
+    // удаление лайков
 
-export const deleteCards = (id) => {
-    return fetch(`${config.baseUrl}/cards/${id}`, {
-            method: 'DELETE',
-            headers: config.headers,
-        })
-        .then(checkResponse);
+    deleteCardsLike(id) {
+        return this._connectionToServer(`/cards/likes/${id}`, 'DELETE', null)
+    }
+
+    // данные об удалении керточки
+
+    deleteCards(id) {
+        return this._connectionToServer(`/cards/${id}`, 'DELETE', null)
+    }
+
 }

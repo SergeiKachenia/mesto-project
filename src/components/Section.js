@@ -1,21 +1,18 @@
 // отвечает за отрисовку элементов на странице && нет своей разметки
 export default class Section {
-    constructor({
-        initialCards: items,
-        renderer
-    }, selector) {
-        this._items = items;
+    constructor(renderer, selector) {
         this._renderer = renderer;
         this._container = document.querySelector(selector);
     }
 
-    renderItems() {
-        this._items.forEach(item => {
-            this._renderer(item);
-        });
+    addItem(item) {
+        const cardItem = this._renderer(item)
+        this._container.append(cardItem);
     }
 
-    addItem(item) {
-        this._container.append(item);
+    renderItems(items) {
+        items.forEach(item => {
+            this.addItem(item);
+        });
     }
 }
