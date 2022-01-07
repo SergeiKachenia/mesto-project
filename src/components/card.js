@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 /* import { openPopup } from './modal.js';
 import { deleteCardsLike, addCardsLike } from "./api.js";
+=======
+import { openPopup } from './modal.js';
+import { deleteCardsLike, addCardsLike } from "./Api.js";
+>>>>>>> de5cfa5990901d85af83439471d29e66ace9b196
 import { setDeleteCardPopup } from "./index.js";
 
 const popupPhoto = document.querySelector('.popup_type_photo');

@@ -1,8 +1,14 @@
 import '../pages/index.css';
-import { closePopup, openPopup, closePopupByOverlay } from './modal.js';
-import { createNewCard } from './card.js';
-import { enableValidation, disableValidation } from './validate.js';
-import { getUserData, getCardsData, sendUserData, sendCardsData, changeUserAvatar, deleteCards } from "./api.js";
+import { createNewCard } from './Card.js';
+import { enableValidation, disableValidation } from './FormValidator.js';
+import { popupConfig, userInfoConfig, validationConfig } from './constants.js';
+import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithApprove from './PopupWithApprove.js';
+import Api from "./Api.js";
+import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 
 // переменные, которые использую несколько раз
 
@@ -32,13 +38,6 @@ const profileEditBtn = content.querySelector('.popup__profile-save-button');
 const placeAddBtn = content.querySelector('.popup__new-place-create-button');
 const avatarEditBtn = content.querySelector('.popup__new-avatar-save-button');
 const cardDeleteBtn = content.querySelector('.popup__delete-card-button');
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__field',
-    submitButtonSelector: '.popup__submit-button',
-    inputErrorClass: 'popup__field_type_error',
-    errorClass: 'popup__input-error_active'
-}
 let currentUser;
 
 // получение информации о карточках и пользователе
