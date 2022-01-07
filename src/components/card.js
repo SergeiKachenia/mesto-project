@@ -1,4 +1,4 @@
-import { openPopup } from './modal.js';
+/* import { openPopup } from './modal.js';
 import { deleteCardsLike, addCardsLike } from "./api.js";
 import { setDeleteCardPopup } from "./index.js";
 
@@ -81,5 +81,55 @@ function openPlacePopup(cardItem) {
 function isMyCard(deleteBtn, cardItem, userData) {
     if (cardItem.owner._id !== userData._id) {
         deleteBtn.classList.add('element__delete-button_hidden');
+    }
+} */
+
+export default class Card {
+    // имя карточки из массива, ссылка на фото из массива, селектор темплейта, 
+    constructor({
+        data,
+        handleCardClick
+    }, cardSelector) {
+        this._name = data.name;
+        this._link = data.link;
+        this._description = `Фотография места. ${data.name}`;
+        this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
+    }
+
+    _getTemplate() {
+        const cardTemplate = document
+            .querySelector(this._cardSelector)
+            .content
+            .cloneNode(true);
+        return cardTemplate;
+    }
+
+    _setEventListeners() {
+        this._card.querySelector('.card__like-icon').addEventListener('click', (e) => {
+            e.target.classList.toggle("card__like-icon_liked");
+        });
+
+        this._card.querySelector('.card__delete-icon').addEventListener('click', (e) => {
+            e.target.closest(".card").remove();
+        });
+
+        this._card.querySelector('.card__image').addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
+        });
+    }
+
+    generateCard() {
+        this._card = this._getTemplate();
+        this._setEventListeners();
+
+        const image = this._card.querySelector('.card__image');
+        const title = this._card.querySelector('.card__title');
+
+        image.src = this._link;
+        image.alt = this._name;
+        title.textContent = this._name;
+
+        return this._card;
     }
 }
