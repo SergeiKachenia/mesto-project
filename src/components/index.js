@@ -1,8 +1,7 @@
 import '../pages/index.css';
-import { createNewCard } from './Card.js';
-import { enableValidation, disableValidation } from './FormValidator.js';
-import { popupConfig, userInfoConfig, validationConfig } from './constants.js';
-import Popup from './Popup.js';
+import Card from './Card.js';
+import formValidator from './FormValidator.js';
+import { popupConfig, userInfoConfig, validationConfig, profileEditBtn, content, placeAddBtn, avatarEditBtn, cardDeleteBtn, nameInput, descInput, profileName, profileDesc, profileAvatar, placeName, placeLink, avatarLink } from './constants.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithApprove from './PopupWithApprove.js';
@@ -12,7 +11,6 @@ import UserInfo from './UserInfo.js';
 
 // переменные, которые использую несколько раз
 
-const content = document.querySelector('.content');
 const popups = document.querySelectorAll('.popup');
 const closeButtons = content.querySelectorAll('.popup__close-button');
 const elements = content.querySelector('.elements');
@@ -23,21 +21,9 @@ const popupDeleteCard = content.querySelector('.popup_type_delete-card')
 const editForm = content.querySelector('.popup__form_type_edit');
 const addForm = content.querySelector('.popup__form_type_add');
 const avatarForm = content.querySelector('.popup__form_type_avatar');
-const nameInput = content.querySelector('.popup__field_content_name');
-const descInput = content.querySelector('.popup__field_content_description');
-const profileName = content.querySelector('.profile__name');
-const profileDesc = content.querySelector('.profile__description');
-const profileAvatar = content.querySelector('.profile__avatar');
-const placeName = content.querySelector('.popup__field_content_placename');
-const placeLink = content.querySelector('.popup__field_content_link');
-const avatarLink = content.querySelector('.popup__field_content_avatar');
 const editInputs = content.querySelectorAll('.popup__edit-profile-input');
 const cardsInputs = content.querySelectorAll('.popup__new-place-input');
 const avatarInputs = content.querySelectorAll('.popup__new-avatar-input')
-const profileEditBtn = content.querySelector('.popup__profile-save-button');
-const placeAddBtn = content.querySelector('.popup__new-place-create-button');
-const avatarEditBtn = content.querySelector('.popup__new-avatar-save-button');
-const cardDeleteBtn = content.querySelector('.popup__delete-card-button');
 let currentUser;
 
 // получение информации о карточках и пользователе
