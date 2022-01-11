@@ -18,18 +18,10 @@ export default class Api {
             })
     }
 
-    //const config = {
-    //   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-4',
-    //   headers: {
-    //       authorization: '0097a37e-2eb2-4a07-8e8c-4ee3c30b05f9',
-    //       'Content-Type': 'application/json'
-    //   }
-    //}
-
     // получение данных о пользователе
 
     getUserData() {
-        return this._connectionToServer('/users/me', 'GET', null)
+        return this._connectionToServer('/users/me', 'GET', null);
     }
 
     // получение данных о карточках

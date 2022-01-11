@@ -22,7 +22,21 @@ export const userInfoConfig = {
     userCaption: '.profile__job-title',
     userAvatar: '.profile__avatar'
 }
+
+export const cardsConfig = {
+    cardsTemplate: '.cards-template',
+    card: '.element',
+    likeButton: '.element__like-button',
+    likeCounter: '.element__likes-counter',
+    deleteButton: '.element__delete-button',
+    deleteButtonHidden: '.element__delete-button_hidden',
+    cardImage: '.element__image',
+    cardTitle: '.element__title',
+    activeLike: 'element__like-button_active'
+}
+
 export const content = document.querySelector('.content');
+export const popupForms = content.querySelectorAll('.popup__form');
 export const profileEditBtn = content.querySelector('.popup__profile-save-button');
 export const placeAddBtn = content.querySelector('.popup__new-place-create-button');
 export const avatarEditBtn = content.querySelector('.popup__new-avatar-save-button');
@@ -32,6 +46,10 @@ export const descInput = content.querySelector('.popup__field_content_descriptio
 export const profileName = content.querySelector('.profile__name');
 export const profileDesc = content.querySelector('.profile__description');
 export const profileAvatar = content.querySelector('.profile__avatar');
-export const placeName = content.querySelector('.popup__field_content_placename');
-export const placeLink = content.querySelector('.popup__field_content_link');
-export const avatarLink = content.querySelector('.popup__field_content_avatar');
+export const popupDeleteCard = content.querySelector('.popup_type_delete-card');
+export const popupProfile = content.querySelector('.popup_type_profile');
+export const popupAddCard = content.querySelector('.popup_type_place');
+export const popupAvatar = content.querySelector('.popup_type_avatar');
+export const popupPhoto = content.querySelector('.popup_type_photo');
+export const likeActive = 'element__like-button_active';
+export const cardsContainer = '.elements'
