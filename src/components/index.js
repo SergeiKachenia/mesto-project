@@ -11,7 +11,7 @@ import UserInfo from './UserInfo.js';
 
 
 
-// получение информации о карточках и пользователе
+
 
 
 
@@ -30,7 +30,7 @@ function toggleLike(evt, cardItem, likeCounter) {
             })
             .catch(err => console.log(err))
     } else {
-        newApi.addCardsLike(id)
+        newApi.addCardsLike(cardId)
             .then(res => {
                 likeCounter.textContent = res.likes.length
                 evt.target.classList.add(likeActive)
@@ -84,7 +84,7 @@ const newSection = new Section(
 const newEditProfilePopup = new PopupWithForm('.popup_type_profile', popupConfig, (valuesObject) => {
     newApi.sendUserData(valuesObject)
         .then(res => {
-            userInfo.setUserInfo(res.userName, res.userCaption, res.userAvatar)
+            userInfo.setUserInfo(res.name, res.caption, res.avatar)
             userInfo.userData = res
             newEditProfilePopup.close()
         })
@@ -111,7 +111,7 @@ newAddCardPopup.setEventListeners()
 const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig, (valuesObject) => {
     newApi.changeUserAvatar(valuesObject.avatar)
         .then(res => {
-            userInfo.setUserInfo(res.userName, res.userCaption, res.userAvatar)
+            userInfo.setUserInfo(res.name, res.caption, res.avatar)
             userInfo.userData = res
             newChangeAvatarPopup.close()
         })
@@ -145,8 +145,8 @@ newDeletePopup.setEventListeners()
 
 profileEditBtn.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
-    nameInput.value = userData.userName;
-    descInput.value = userData.userCaption;
+    nameInput.value = userData.name;
+    descInput.value = userData.caption;
     newEditProfilePopup.open()
 })
 
