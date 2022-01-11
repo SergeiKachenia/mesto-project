@@ -46,12 +46,12 @@ function deleteCardPopup(evt) {
     popupDeleteCard.setAttribute('data-id', cardId)
 }
 
-// Коллбэк обработки клика по картинке (для класса Card)
+
 function openCardPopup(cardItem) {
     popupPhoto.open(cardItem)
 }
 
-// Создания нового экземпляра класса Card
+
 function getNewCard(cardItem) {
     return new Card({
         cardItem: cardItem,
@@ -104,21 +104,21 @@ const newAddCardPopup = new PopupWithForm('.popup_type_place', popupConfig, (val
         .finally(() => setTimeout(() => { newAddCardPopup.renderLoading(false, 'Добавить') }, 305))
 })
 
-// Навешиваем слушатели на форму
+
 newAddCardPopup.setEventListeners()
 
 
 const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig, (valuesObject) => {
-        newApi.changeUserAvatar(valuesObject.avatar)
-            .then(res => {
-                userInfo.setUserInfo(res.userName, res.userCaption, res.userAvatar)
-                userInfo.userData = res
-                newChangeAvatarPopup.close()
-            })
-            .catch(err => console.log(err))
-            .finally(() => setTimeout(() => { newChangeAvatarPopup.renderLoading(false) }, 305))
-    })
-    // Навешиваем слушатели на форму
+    newApi.changeUserAvatar(valuesObject.avatar)
+        .then(res => {
+            userInfo.setUserInfo(res.userName, res.userCaption, res.userAvatar)
+            userInfo.userData = res
+            newChangeAvatarPopup.close()
+        })
+        .catch(err => console.log(err))
+        .finally(() => setTimeout(() => { newChangeAvatarPopup.renderLoading(false) }, 305))
+})
+
 newChangeAvatarPopup.setEventListeners();
 
 
@@ -127,19 +127,19 @@ newPhotoPopup.setEventListeners()
 
 
 const newDeletePopup = new PopupWithApprove('.popup_type_delete-card', popupConfig, () => {
-        const cardId = popupDeleteCard.getAttribute('data-id')
-        const card = document.querySelector(`[data-id='${cardId}']`)
-        newDeletePopup.renderLoading(true)
+    const cardId = popupDeleteCard.getAttribute('data-id')
+    const card = document.querySelector(`[data-id='${cardId}']`)
+    newDeletePopup.renderLoading(true)
 
-        newApi.deleteCards(cardId)
-            .then(() => {
-                card.remove()
-                newDeletePopup.close()
-            })
-            .catch(error => console.log(error))
-            .finally(() => setTimeout(() => { newDeletePopup.renderLoading(false) }, 305))
-    })
-    // Навешиваем слушатели на кнопку удаления
+    newApi.deleteCards(cardId)
+        .then(() => {
+            card.remove()
+            newDeletePopup.close()
+        })
+        .catch(error => console.log(error))
+        .finally(() => setTimeout(() => { newDeletePopup.renderLoading(false) }, 305))
+})
+
 newDeletePopup.setEventListeners()
 
 
@@ -150,7 +150,7 @@ profileEditBtn.addEventListener('click', () => {
     newEditProfilePopup.open()
 })
 
-// Слушатель открытия модального окна Add
+
 placeAddBtn.addEventListener('click', () => {
     newAddCardPopup.open()
 })
