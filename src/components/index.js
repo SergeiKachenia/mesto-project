@@ -41,7 +41,7 @@ function toggleLike(evt, cardItem, likeCounter) {
 
 function deleteCardPopup(evt) {
     newDeletePopup.open()
-    const card = evt.target.closest('.elements__element')
+    const card = evt.target.closest('.element')
     const cardId = card.getAttribute('data-id')
     popupDeleteCard.setAttribute('data-id', cardId)
 }
