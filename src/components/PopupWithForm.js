@@ -19,14 +19,15 @@ export default class PopupWithForm extends Popup {
         this._popupInputs.forEach(input => {
             values[input.name] = input.value
         })
+        console.log(values)
         return values;
     }
 
     changeButtonText(isLoading) {
         if (isLoading) {
-            this.submitButton.textContent = 'Сохраняем...'
+            this.popupSubmitButton.textContent = 'Сохраняем...'
         } else {
-            this.submitButton.textContent = 'Сохранить';
+            this.popupSubmitButton.textContent = 'Сохранить';
         }
     }
 
@@ -35,7 +36,7 @@ export default class PopupWithForm extends Popup {
         this._popupForm.addEventListener('submit', event => {
             event.preventDefault();
             this.changeButtonText(true);
-            this._submitForm(this._getInputValues())
+            this._submitForm(this._getValues())
         })
     }
 

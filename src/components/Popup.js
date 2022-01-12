@@ -12,7 +12,7 @@ export default class Popup {
     }
 
     close() {
-        this._popup.classList.remove(this._popupActive);
+        this._popup.classList.remove(this._popupOpened);
         document.removeEventListener("keydown", this._handleEscClose);
     }
 
@@ -27,7 +27,7 @@ export default class Popup {
     }
 
     _handleClickOnOverlay(event) {
-        if (event.target.classList.contains('popup_active')) this.close();
+        if (event.target.classList.contains('popup_opened')) this.close();
         event.stopPropagation();
     }
 

@@ -1,7 +1,7 @@
 import '../pages/index.css';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-import { popupConfig, userInfoConfig, validationConfig, cardsConfig, profileEditBtn, content, popupForms, likeActive, cardsContainer, placeAddBtn, avatarEditBtn, popupDeleteCard, popupPhoto, nameInput, descInput } from './constants.js';
+import { popupConfig, userInfoConfig, validationConfig, cardsConfig, content, popupForms, likeActive, cardsContainer, popupDeleteCard, nameInput, descInput, profileEditButton, placeAddButton, avatarChangeButton } from './constants.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithApprove from './PopupWithApprove.js';
@@ -48,7 +48,7 @@ function deleteCardPopup(evt) {
 
 
 function openCardPopup(cardItem) {
-    popupPhoto.open(cardItem)
+    newPhotoPopup.open(cardItem)
 }
 
 
@@ -81,42 +81,42 @@ const newSection = new Section(
     cardsContainer)
 
 
-const newEditProfilePopup = new PopupWithForm('.popup_type_profile', popupConfig, (valuesObject) => {
-    newApi.sendUserData(valuesObject)
+const newEditProfilePopup = new PopupWithForm('.popup_type_profile', popupConfig, (values) => {
+    newApi.sendUserData(values)
         .then(res => {
-            userInfo.setUserInfo(res.name, res.caption, res.avatar)
+            userInfo.setUserInfo(res.name, res.about, res.avatar)
             userInfo.userData = res
             newEditProfilePopup.close()
         })
         .catch(err => console.log(err))
-        .finally(() => setTimeout(() => { newEditProfilePopup.renderLoading(false) }, 305))
+        .finally(() => setTimeout(() => { newEditProfilePopup.changeButtonText(false) }, 305))
 })
 
 newEditProfilePopup.setEventListeners();
 
-const newAddCardPopup = new PopupWithForm('.popup_type_place', popupConfig, (valuesObject) => {
-    newApi.sendCardsData(valuesObject)
+const newAddCardPopup = new PopupWithForm('.popup_type_place', popupConfig, (values) => {
+    newApi.sendCardsData(values)
         .then(res => {
             newSection.addItem(res)
-            addCardPopup.close()
+            newAddCardPopup.close()
         })
         .catch(err => console.log(err))
-        .finally(() => setTimeout(() => { newAddCardPopup.renderLoading(false, 'Добавить') }, 305))
+        .finally(() => setTimeout(() => { newAddCardPopup.changeButtonText(false) }, 305))
 })
 
 
 newAddCardPopup.setEventListeners()
 
 
-const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig, (valuesObject) => {
-    newApi.changeUserAvatar(valuesObject.avatar)
+const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig, (values) => {
+    newApi.changeUserAvatar(values.link)
         .then(res => {
-            userInfo.setUserInfo(res.name, res.caption, res.avatar)
+            userInfo.setUserInfo(res.name, res.about, res.avatar)
             userInfo.userData = res
             newChangeAvatarPopup.close()
         })
         .catch(err => console.log(err))
-        .finally(() => setTimeout(() => { newChangeAvatarPopup.renderLoading(false) }, 305))
+        .finally(() => setTimeout(() => { newChangeAvatarPopup.changeButtonText(false) }, 305))
 })
 
 newChangeAvatarPopup.setEventListeners();
@@ -129,7 +129,7 @@ newPhotoPopup.setEventListeners()
 const newDeletePopup = new PopupWithApprove('.popup_type_delete-card', popupConfig, () => {
     const cardId = popupDeleteCard.getAttribute('data-id')
     const card = document.querySelector(`[data-id='${cardId}']`)
-    newDeletePopup.renderLoading(true)
+    newDeletePopup.changeButtonText(true)
 
     newApi.deleteCards(cardId)
         .then(() => {
@@ -137,25 +137,25 @@ const newDeletePopup = new PopupWithApprove('.popup_type_delete-card', popupConf
             newDeletePopup.close()
         })
         .catch(error => console.log(error))
-        .finally(() => setTimeout(() => { newDeletePopup.renderLoading(false) }, 305))
+        .finally(() => setTimeout(() => { newDeletePopup.changeButtonText(false) }, 305))
 })
 
 newDeletePopup.setEventListeners()
 
 
-profileEditBtn.addEventListener('click', () => {
+profileEditButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;
-    descInput.value = userData.caption;
+    descInput.value = userData.about;
     newEditProfilePopup.open()
 })
 
 
-placeAddBtn.addEventListener('click', () => {
+placeAddButton.addEventListener('click', () => {
     newAddCardPopup.open()
 })
 
-avatarEditBtn.addEventListener('click', () => {
+avatarChangeButton.addEventListener('click', () => {
     newChangeAvatarPopup.open()
 })
 
@@ -169,7 +169,7 @@ Promise.all([newApi.getCardsData(), newApi.getUserData()])
     .then(([cards, userData]) => {
         userInfo.userData = userData;
         newSection.renderItems(cards.reverse());
-        userInfo.setUserInfo(userInfo.userData.name, userInfo.userData.caption, userInfo.userData.avatar)
+        userInfo.setUserInfo(userInfo.userData.name, userInfo.userData.about, userInfo.userData.avatar)
     })
     .catch(error => {
         console.log(error);

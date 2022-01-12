@@ -54,7 +54,7 @@ export default class Card {
 
     _isMyCard() {
         if (this._cardItem.owner._id !== this._userData._id) {
-            this._deleteButton.classList.add(this._cardsConfig.deleteButtonHidden);
+            this._deleteButton.classList.add('element__delete-button_hidden');
         }
     }
 
@@ -66,8 +66,7 @@ export default class Card {
     }
 
     generateNewCard() {
-        this._card = this._getTemplate();
-        this._setEventListeners();
+        this.card = this._getTemplate();
         this._likeButton = this.card.querySelector(this._cardsConfig.likeButton)
         this._likeCounter = this.card.querySelector(this._cardsConfig.likeCounter)
         this._deleteButton = this.card.querySelector(this._cardsConfig.deleteButton)

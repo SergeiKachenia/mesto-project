@@ -4,7 +4,7 @@ export default class Api {
         this._headers = options.headers;
     }
 
-    _connectionToServer(url, method, body) {
+    _connectionToServer(url, method = 'GET', body = null) {
         return fetch(`${this._baseUrl}${url}`, {
                 method: method,
                 headers: this._headers,
@@ -21,26 +21,26 @@ export default class Api {
     // получение данных о пользователе
 
     getUserData() {
-        return this._connectionToServer('/users/me', 'GET', null);
+        return this._connectionToServer('/users/me')
     }
 
     // получение данных о карточках
 
     getCardsData() {
-        return this._connectionToServer('/cards', 'GET', null);
+        return this._connectionToServer('/cards')
 
     }
 
     // отправка данных о пользователе
 
     sendUserData(userData) {
-        return this._connectionToServer('/users/me', 'PATCH', JSON.stringify({ name: userData.name, caption: userData.caption }))
+        return this._connectionToServer('/users/me', 'PATCH', JSON.stringify({ name: userData.name, about: userData.description }))
     }
 
     // отправка данных о карточках
 
     sendCardsData(cardItem) {
-        return this._connectionToServer('/cards', 'POST', JSON.stringify({ name: cardItem.name, link: cardItem.link }))
+        return this._connectionToServer('/cards', 'POST', JSON.stringify({ name: cardItem.placename, link: cardItem.link }))
     }
 
     // изменение аватара пользователя
