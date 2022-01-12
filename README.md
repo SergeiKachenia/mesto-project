@@ -15,3 +15,8 @@
 ### GH Pages
 Данный проект также доступен на GitHub Pages по [этой](https://sergeikachenia.github.io/mesto-project/) ссылке.
 
+
+### Авторы
+Данная работа была сделана Ильей Гончаровым Ilia.m.goncharov@gmail.com / https://github.com/illiaGoncharov и Сергеем Каченей - sergeikachenya@yandex.ru / https://github.com/SergeiKachenia
+
+
