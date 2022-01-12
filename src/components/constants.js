@@ -51,4 +51,4 @@ export const likeActive = 'element__like-button_active';
 export const cardsContainer = '.elements'
 export const profileEditButton = content.querySelector('.profile__edit-button');
 export const placeAddButton = content.querySelector('.profile__add-button');
-export const avatarChangeButton = content.querySelector('.profile__avatar_hovered');
+export const avatarChangeButton = content.querySelector('.profile__avatar-button');
