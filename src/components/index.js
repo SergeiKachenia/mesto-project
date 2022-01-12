@@ -10,14 +10,42 @@ import Section from './Section.js';
 import UserInfo from './UserInfo.js';
 
 
+// Инициализация экземпляра класса Api
+const newApi = new Api({
+    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-4',
+    headers: {
+        authorization: '0097a37e-2eb2-4a07-8e8c-4ee3c30b05f9',
+        'Content-Type': 'application/json'
+    }
+})
+
+// Инициализация экземпляра класса UserInfo
+const userInfo = new UserInfo(userInfoConfig);
+
+// Инициализация экземпляра класса Section
+const newSection = new Section(
+    item => {
+        const cardItem = getNewCard(item)
+        return cardItem.generateNewCard()
+    },
+    cardsContainer)
 
 
+// Инициализия профиля пользователя и добавление базового массива карточек
+Promise.all([newApi.getCardsData(), newApi.getUserData()])
+    .then(([cards, userData]) => {
+        userInfo.userData = userData;
+        newSection.renderItems(cards.reverse());
+        userInfo.setUserInfo(userInfo.userData.name, userInfo.userData.about, userInfo.userData.avatar)
+    })
+    .catch(error => {
+        console.log(error);
+    });
 
 
-
+// Коллбэк лайка карточки 
 function toggleLike(evt, cardItem, likeCounter) {
     const cardId = cardItem._id
-
     if (evt.target.classList.contains(likeActive)) {
         newApi.deleteCardsLike(cardId)
             .then(res => {
@@ -39,6 +67,7 @@ function toggleLike(evt, cardItem, likeCounter) {
     }
 }
 
+// Коллбек удаления карточки 
 function deleteCardPopup(evt) {
     newDeletePopup.open()
     const card = evt.target.closest('.element')
@@ -46,12 +75,13 @@ function deleteCardPopup(evt) {
     popupDeleteCard.setAttribute('data-id', cardId)
 }
 
-
+// Коллбэк открытия попапа
 function openCardPopup(cardItem) {
     newPhotoPopup.open(cardItem)
 }
 
 
+// Функция, которая возвращает новую карточку
 function getNewCard(cardItem) {
     return new Card({
         cardItem: cardItem,
@@ -62,25 +92,13 @@ function getNewCard(cardItem) {
     }, cardsConfig)
 }
 
-const newApi = new Api({
-    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-4',
-    headers: {
-        authorization: '0097a37e-2eb2-4a07-8e8c-4ee3c30b05f9',
-        'Content-Type': 'application/json'
-    }
-})
 
-const userInfo = new UserInfo(userInfoConfig);
+// Инициализация экземпляра класса PopupWithImage
+const newPhotoPopup = new PopupWithImage('.popup_type_photo', popupConfig)
+// + слушатели (откр/закр)
+newPhotoPopup.setEventListeners()
 
-
-const newSection = new Section(
-    item => {
-        const cardItem = getNewCard(item)
-        return cardItem.generateNewCard()
-    },
-    cardsContainer)
-
-
+// Инициализация экземпляра класса PopupWithForm для попапа с данными о пользователе
 const newEditProfilePopup = new PopupWithForm('.popup_type_profile', popupConfig, (values) => {
     newApi.sendUserData(values)
         .then(res => {
@@ -91,9 +109,10 @@ const newEditProfilePopup = new PopupWithForm('.popup_type_profile', popupConfig
         .catch(err => console.log(err))
         .finally(() => setTimeout(() => { newEditProfilePopup.changeButtonText(false) }, 305))
 })
-
+// + слушатели (откр/закр, сабмит)
 newEditProfilePopup.setEventListeners();
 
+// Инициализация экземпляра класса PopupWithForm для попапа добавления карточки 
 const newAddCardPopup = new PopupWithForm('.popup_type_place', popupConfig, (values) => {
     newApi.sendCardsData(values)
         .then(res => {
@@ -103,11 +122,10 @@ const newAddCardPopup = new PopupWithForm('.popup_type_place', popupConfig, (val
         .catch(err => console.log(err))
         .finally(() => setTimeout(() => { newAddCardPopup.changeButtonText(false) }, 305))
 })
-
-
+// + слушатели (откр/закр, сабмит)
 newAddCardPopup.setEventListeners()
 
-
+// Инициализация экземпляра класса PopupWithForm для изменения автара пользователя 
 const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig, (values) => {
     newApi.changeUserAvatar(values.link)
         .then(res => {
@@ -118,19 +136,14 @@ const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig
         .catch(err => console.log(err))
         .finally(() => setTimeout(() => { newChangeAvatarPopup.changeButtonText(false) }, 305))
 })
-
+// + слушатели (откр/закр, сабмит)
 newChangeAvatarPopup.setEventListeners();
 
-
-const newPhotoPopup = new PopupWithImage('.popup_type_photo', popupConfig)
-newPhotoPopup.setEventListeners()
-
-
+//  Инициализация экземпляра класса PopupWithApprove
 const newDeletePopup = new PopupWithApprove('.popup_type_delete-card', popupConfig, () => {
     const cardId = popupDeleteCard.getAttribute('data-id')
     const card = document.querySelector(`[data-id='${cardId}']`)
     newDeletePopup.changeButtonText(true)
-
     newApi.deleteCards(cardId)
         .then(() => {
             card.remove()
@@ -139,10 +152,18 @@ const newDeletePopup = new PopupWithApprove('.popup_type_delete-card', popupConf
         .catch(error => console.log(error))
         .finally(() => setTimeout(() => { newDeletePopup.changeButtonText(false) }, 305))
 })
-
+// + слушатели (закрыть, сабмит)
 newDeletePopup.setEventListeners()
 
 
+// Включение валидации форм в попапах
+popupForms.forEach(form => {
+    const newFormValidation = new FormValidator(validationConfig, form);
+    newFormValidation.enableValidation()
+})
+
+
+// Обработчик события, который открывает попап с данными о пользователе 
 profileEditButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;
@@ -150,27 +171,12 @@ profileEditButton.addEventListener('click', () => {
     newEditProfilePopup.open()
 })
 
-
-placeAddButton.addEventListener('click', () => {
-    newAddCardPopup.open()
-})
-
+// Обработчик события, который открывает попап с обновлением аватарки
 avatarChangeButton.addEventListener('click', () => {
     newChangeAvatarPopup.open()
 })
 
-popupForms.forEach(form => {
-    const newFormValidation = new FormValidator(validationConfig, form);
-    newFormValidation.enableValidation()
+// Обработчик события, который открывает попап с добавлением карточки
+placeAddButton.addEventListener('click', () => {
+    newAddCardPopup.open()
 })
-
-
-Promise.all([newApi.getCardsData(), newApi.getUserData()])
-    .then(([cards, userData]) => {
-        userInfo.userData = userData;
-        newSection.renderItems(cards.reverse());
-        userInfo.setUserInfo(userInfo.userData.name, userInfo.userData.about, userInfo.userData.avatar)
-    })
-    .catch(error => {
-        console.log(error);
-    });

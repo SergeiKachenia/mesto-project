@@ -31,7 +31,6 @@ export default class Popup {
         event.stopPropagation();
     }
 
-
     setEventListeners() {
         this._popup.addEventListener('click', this._handleClickOnOverlay.bind(this))
         this._closeButton.addEventListener('click', this._handleClickCloseButton.bind(this))
