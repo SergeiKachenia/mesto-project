@@ -13,8 +13,8 @@ export const validationConfig = {
     form: '.popup__form',
     input: '.popup__field',
     submitButton: '.popup__submit-button',
-    inputError: '.popup__field_type_error',
-    error: '.popup__input-error_active'
+    inputError: 'popup__field_type_error',
+    error: 'popup__input-error_active'
 }
 
 export const userInfoConfig = {

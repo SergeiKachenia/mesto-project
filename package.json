@@ -2,7 +2,7 @@
     "name": "mesto-project",
     "version": "1.0.0",
     "description": "training project",
-    "main": "index.js",
+    "private": true,
     "scripts": {
         "build": "webpack --mode production",
         "dev": "webpack serve",
