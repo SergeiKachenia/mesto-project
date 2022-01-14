@@ -6,7 +6,6 @@ import {
     userInfoConfig,
     validationConfig,
     cardsConfig,
-    content,
     popupForms,
     likeActive,
     cardsContainer,
@@ -51,14 +50,14 @@ Promise.all([newApi.getCardsData(), newApi.getUserData()])
     .then(([cards, userData]) => {
         userInfo.userData = userData;
         newSection.renderItems(cards.reverse());
-        userInfo.setUserInfo(userInfo.userData.name, userInfo.userData.about, userInfo.userData.avatar)
+        userInfo.setUserInfo(userInfo.userData.name, userInfo.userData.about, userInfo.userData.avatar, userInfo.userData._id)
     })
     .catch(error => {
         console.log(error);
     });
 
 
-// Коллбэк лайка карточки 
+// Коллбэк лайка карточки
 function toggleLike(evt, cardItem, likeCounter) {
     const cardId = cardItem._id
     if (evt.target.classList.contains(likeActive)) {
@@ -82,7 +81,7 @@ function toggleLike(evt, cardItem, likeCounter) {
     }
 }
 
-// Коллбек удаления карточки 
+// Коллбек удаления карточки
 function deleteCardPopup(evt) {
     newDeletePopup.open()
     const card = evt.target.closest('.element')
@@ -110,64 +109,64 @@ function getNewCard(cardItem) {
 
 // Инициализация экземпляра класса PopupWithImage
 const newPhotoPopup = new PopupWithImage('.popup_type_photo', popupConfig)
-// + слушатели (откр/закр)
+    // + слушатели (откр/закр)
 newPhotoPopup.setEventListeners()
 
 // Инициализация экземпляра класса PopupWithForm для попапа с данными о пользователе
 const newEditProfilePopup = new PopupWithForm('.popup_type_profile', popupConfig, (values) => {
-    newApi.sendUserData(values)
-        .then(res => {
-            userInfo.setUserInfo(res.name, res.about, res.avatar)
-            userInfo.userData = res
-            newEditProfilePopup.close()
-        })
-        .catch(err => console.log(err))
-        .finally(() => setTimeout(() => { newEditProfilePopup.changeButtonText(false) }, 305))
-})
-// + слушатели (откр/закр, сабмит)
+        newApi.sendUserData(values)
+            .then(res => {
+                userInfo.setUserInfo(res.name, res.about, res.avatar, res._id)
+                userInfo.userData = res
+                newEditProfilePopup.close()
+            })
+            .catch(err => console.log(err))
+            .finally(() => setTimeout(() => { newEditProfilePopup.changeButtonText(false) }, 305))
+    })
+    // + слушатели (откр/закр, сабмит)
 newEditProfilePopup.setEventListeners();
 
-// Инициализация экземпляра класса PopupWithForm для попапа добавления карточки 
+// Инициализация экземпляра класса PopupWithForm для попапа добавления карточки
 const newAddCardPopup = new PopupWithForm('.popup_type_place', popupConfig, (values) => {
-    newApi.sendCardsData(values)
-        .then(res => {
-            newSection.addItem(res)
-            newAddCardPopup.close()
-        })
-        .catch(err => console.log(err))
-        .finally(() => setTimeout(() => { newAddCardPopup.changeButtonText(false) }, 305))
-})
-// + слушатели (откр/закр, сабмит)
+        newApi.sendCardsData(values)
+            .then(res => {
+                newSection.addItem(res)
+                newAddCardPopup.close()
+            })
+            .catch(err => console.log(err))
+            .finally(() => setTimeout(() => { newAddCardPopup.changeButtonText(false) }, 305))
+    })
+    // + слушатели (откр/закр, сабмит)
 newAddCardPopup.setEventListeners()
 
-// Инициализация экземпляра класса PopupWithForm для изменения автара пользователя 
+// Инициализация экземпляра класса PopupWithForm для изменения автара пользователя
 const newChangeAvatarPopup = new PopupWithForm('.popup_type_avatar', popupConfig, (values) => {
-    newApi.changeUserAvatar(values.link)
-        .then(res => {
-            userInfo.setUserInfo(res.name, res.about, res.avatar)
-            userInfo.userData = res
-            newChangeAvatarPopup.close()
-        })
-        .catch(err => console.log(err))
-        .finally(() => setTimeout(() => { newChangeAvatarPopup.changeButtonText(false) }, 305))
-})
-// + слушатели (откр/закр, сабмит)
+        newApi.changeUserAvatar(values.link)
+            .then(res => {
+                userInfo.setUserInfo(res.name, res.about, res.avatar, res._id)
+                userInfo.userData = res
+                newChangeAvatarPopup.close()
+            })
+            .catch(err => console.log(err))
+            .finally(() => setTimeout(() => { newChangeAvatarPopup.changeButtonText(false) }, 305))
+    })
+    // + слушатели (откр/закр, сабмит)
 newChangeAvatarPopup.setEventListeners();
 
 //  Инициализация экземпляра класса PopupWithApprove
 const newDeletePopup = new PopupWithApprove('.popup_type_delete-card', popupConfig, () => {
-    const cardId = popupDeleteCard.getAttribute('data-id')
-    const card = document.querySelector(`[data-id='${cardId}']`)
-    newDeletePopup.changeButtonText(true)
-    newApi.deleteCards(cardId)
-        .then(() => {
-            card.remove()
-            newDeletePopup.close()
-        })
-        .catch(error => console.log(error))
-        .finally(() => setTimeout(() => { newDeletePopup.changeButtonText(false) }, 305))
-})
-// + слушатели (закрыть, сабмит)
+        const cardId = popupDeleteCard.getAttribute('data-id')
+        const card = document.querySelector(`[data-id='${cardId}']`)
+        newDeletePopup.changeButtonText(true)
+        newApi.deleteCards(cardId)
+            .then(() => {
+                card.remove()
+                newDeletePopup.close()
+            })
+            .catch(error => console.log(error))
+            .finally(() => setTimeout(() => { newDeletePopup.changeButtonText(false) }, 305))
+    })
+    // + слушатели (закрыть, сабмит)
 newDeletePopup.setEventListeners()
 
 
@@ -178,7 +177,7 @@ popupForms.forEach(form => {
 })
 
 
-// Обработчик события, который открывает попап с данными о пользователе 
+// Обработчик события, который открывает попап с данными о пользователе
 profileEditButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;

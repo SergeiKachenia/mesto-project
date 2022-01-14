@@ -8,7 +8,7 @@ export default class PopupWithApprove extends Popup {
 
     changeButtonText(isLoading) {
         if (isLoading) {
-            this.popupSubmitButton.textContent = 'Сохраняем...';
+            this.popupSubmitButton.textContent = 'Удаляем...';
         } else {
             this.popupSubmitButton.textContent = 'Да';
         }

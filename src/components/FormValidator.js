@@ -26,9 +26,9 @@ export default class FormValidator {
     };
 
     // check + toggles button states
-    _toggleButtonState(inputs, button) {
-        const notValidInput = inputs.some((input) => !input.validity.valid);
-        notValidInput ? button.setAttribute("disabled", true) : button.removeAttribute("disabled");
+    _toggleButtonState() {
+        const notValidInput = this._inputs.some((input) => !input.validity.valid);
+        notValidInput ? this._button.setAttribute("disabled", true) : this._button.removeAttribute("disabled");
     };
 
     _setEventListeners() {
@@ -38,7 +38,7 @@ export default class FormValidator {
         this._inputs.forEach((input) => {
             input.addEventListener("input", () => {
                 this._checkValidity(input);
-                this._toggleButtonState(this._inputs, this._button);
+                this._toggleButtonState();
             });
         });
         this._form.addEventListener('reset', () => {
@@ -47,7 +47,7 @@ export default class FormValidator {
                 this._hideError(input)
             });
         });
-        this._toggleButtonState(this._inputs, this._button);
+        this._toggleButtonState();
     };
 
     enableValidation() {
