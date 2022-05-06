@@ -1,4 +1,4 @@
-### Project: Mesto project
+# Project: Mesto project
 ### [GitHub Pages link](https://SergeiKachenia.github.io/mesto-project/)
 ### Tech stack
 
