@@ -1,17 +1,21 @@
-# Проект: Место
+# Project: Mesto project
 
-### Обзор
+### Tech stack
 
-* Это второй проект второго месяца обучения в Яндекс.Практикуме. Будет изменяться и дополняться. 
-* На момент 29.08.2021 - сделан "скелет" проекта: небольшой адаптивный сайт на языках HTML и CSS. 
-* 21.09.2021 - добавлена функциональность на JS: возможность добавления новых Мест, возможность лайка Мест, возможность удаления Мест, открытие попапов, редактирование информации профиля, возможность открытия фото на Местах в большом размере.
-* 15.11.2021 - добавлена возможность закрытия попапов по клику на оверлей и по кнопке Esc. Ведется работа над валидацией форм.
-* 21.11.2021 - Изменена инфраструктура проекта: был использован сборщик Webpack, его плагины для работы с CSS и HTML, PostCSS, а также Babel для транспиляции JS-кода. Код разбит на модули, был произведен рефакторинг. Добавлена валидация всех форм.
-* 02.12.2021 - проект "Место" подключен к серверу Яндекс.Практикума. Появилась возможность добавления своих карточек на сервер, удаления своих карточек с сервера, изменения имени и описания пользователя, смены аватара пользователя. Также появился счетчик лайков - показывает, сколько лайков набрала та или иная карточка. Все изменения сохраняются на сервере.
+* Figma
+* HTML/CSS > Flexbox/Grid
+* Vanilla JS
+* Webpack
+* REST API
+* 
+### Adaptive web-application to add pictures with descriptions, the following functionality is implemented:
+* Closing modal windows via ui button / Escape / click outside the window
+* Editing information in the profile seciton
+* Add / remove / like cards
+* Zoom in on images on click
+* Form validation
+* Webpack installed and configured build/dev
+* Minification and transpilation Babel configured
+* Server interaction via promises and fetch
 
-### Основа
-Основой является [этот](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1) макет в Figma.
-
-### GH Pages
-Данный проект также доступен на GitHub Pages по [этой](https://sergeikachenia.github.io/mesto-project/) ссылке.
 
