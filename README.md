@@ -19,3 +19,8 @@
 * Server interaction via promises and fetch
 
 
+
+### Авторы
+Данная работа была сделана Ильей Гончаровым Ilia.m.goncharov@gmail.com / https://github.com/illiaGoncharov и Сергеем Каченей - sergeikachenya@yandex.ru / https://github.com/SergeiKachenia
+
+
